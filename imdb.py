@@ -18,13 +18,14 @@ avengers = imdb.get_title_user_reviews("tt0848228")
 furious = imdb.get_title_user_reviews("tt2820852")
 frozen = imdb.get_title_user_reviews("tt4520988")
 movies = [endgame,avatar, titanic, starwars, infinity, jurassic ,lionking, avengers,furious, frozen]
-movies_string = ["endgame","avatar", "titanic", "starwars", "infinity","jurassic" , "lionking" , "avengers", "furious", "frozen"]
+movies_string = ["endgame", "avatar", "titanic", "starwars", "infinity", "jurassic" , "lionking" , "avengers", "furious", "frozen"]
 # pprint.pprint(avengers)
 # print(avengers_reviews['reviews'][1]['author']['displayName'])
 # print(endgame['reviews'][1]['reviewText'])
 # print(len(avengers_reviews))
 
 def new_list(review):
+    """Takes review directly from IMDB and adds it to its own list"""
     all = []
     for line in review['reviews'][1]['reviewText'].split():
         line = line.lower()
@@ -41,13 +42,8 @@ def histogram(reviews):
             d[line] = d[line]+1
     return d
 
-def run_hists(movies):
-    for movie in movies:
-        new = new_list(movie)
-        new_hist = histogram(new)
-        print(new_hist)
-
 def main():
+    """Runs the above 2 functions for every movie in the list of movie names and performs sentiment analysis on the review"""
     i = 0
     for movie in movies:
         review = movie
